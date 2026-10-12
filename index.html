@@ -1,0 +1,708 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Nova Landing Brief</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: datasheet-style document — header block, sticky contents rail on the left, one reading column; copy fields as label/value rows with origin tags */
+:root{
+  --paper:#FBFCFE; --ink:#0E1525; --muted:#5A6478; --line:#DCE2EC; --panel:#F2F5F9;
+  --accent:#2152D6; --accent-soft:#E7EEFD;
+  --t-o:#1F6B4E; --t-o-bg:#E3F3EC; --t-e:#8A5A0B; --t-e-bg:#FBF0DC; --t-n:#5B3FC4; --t-n-bg:#EEEAFD;
+  --sans:'Geist', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --mono:'Geist Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#0B0F17; --ink:#E5EAF2; --muted:#98A2B5; --line:#242C3B; --panel:#121827;
+  --accent:#7DA6FF; --accent-soft:#17233F;
+  --t-o:#7DD3AE; --t-o-bg:#11291F; --t-e:#F2C470; --t-e-bg:#2C2210; --t-n:#B9A8FF; --t-n-bg:#221B42;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#0B0F17; --ink:#E5EAF2; --muted:#98A2B5; --line:#242C3B; --panel:#121827;
+  --accent:#7DA6FF; --accent-soft:#17233F;
+  --t-o:#7DD3AE; --t-o-bg:#11291F; --t-e:#F2C470; --t-e-bg:#2C2210; --t-n:#B9A8FF; --t-n-bg:#221B42;
+  color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;padding-inline:16px;padding-block:0}
+a{color:var(--accent);text-underline-offset:3px}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:2px}
+h1,h2,h3{text-wrap:balance;line-height:1.2;margin:0}
+p{margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding-block:40px 96px}
+
+/* document header */
+.dochead{display:grid;gap:28px;padding-block:8px 32px;border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:12px;font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.brand b{color:var(--ink);font-weight:500;letter-spacing:.16em}
+.brand .chipmark{width:22px;height:22px;border:1.5px solid var(--ink);border-radius:3px;position:relative;flex:none}
+.brand .chipmark::before{content:"";position:absolute;inset:-5px 4px;border-inline:0;background:repeating-linear-gradient(90deg,var(--ink) 0 1.5px,transparent 1.5px 4px);-webkit-mask:linear-gradient(#000 0 4px,transparent 4px calc(100% - 4px),#000 calc(100% - 4px));mask:linear-gradient(#000 0 4px,transparent 4px calc(100% - 4px),#000 calc(100% - 4px))}
+.dochead h1{font-size:clamp(32px,4.4vw,48px);font-weight:600;letter-spacing:-.025em;max-width:16ch}
+.dochead .lede{font-size:18px;color:var(--muted);max-width:62ch}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.meta div{padding:12px 16px;border-right:1px solid var(--line);min-width:0}
+.meta div:last-child{border-right:0}
+.meta dt{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.meta dd{margin:4px 0 0;font-weight:500}
+.legend{display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center;font-size:14px;color:var(--muted)}
+.legend span{display:inline-flex;gap:8px;align-items:center}
+
+/* tags */
+.tag{display:inline-block;font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;padding:1px 6px;border-radius:3px;vertical-align:2px;white-space:nowrap}
+.tag.o{color:var(--t-o);background:var(--t-o-bg)}
+.tag.e{color:var(--t-e);background:var(--t-e-bg)}
+.tag.n{color:var(--t-n);background:var(--t-n-bg)}
+
+/* layout */
+.body{display:grid;grid-template-columns:220px minmax(0,1fr);gap:56px;padding-top:40px}
+.toc{position:sticky;top:calc(env(safe-area-inset-top,0px) + 24px);align-self:start;font-size:14px}
+.toc p{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.toc ol{list-style:none;margin:0;padding:0;display:grid;gap:2px;border-left:1px solid var(--line)}
+.toc a{display:grid;grid-template-columns:28px 1fr;padding:5px 0 5px 14px;color:var(--muted);text-decoration:none;margin-left:-1px;border-left:2px solid transparent}
+.toc a span{font-family:var(--mono);font-size:12px;font-variant-numeric:tabular-nums}
+.toc a:hover,.toc a.on{color:var(--ink);border-left-color:var(--accent)}
+main{min-width:0;display:grid;gap:64px}
+@media (max-width:900px){.body{grid-template-columns:minmax(0,1fr);gap:32px}.toc{position:static}.toc ol{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}}
+
+/* sections */
+section{display:grid;gap:20px;scroll-margin-top:24px}
+.sechead{display:grid;gap:8px;padding-top:20px;border-top:2px solid var(--ink)}
+.secno{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.sechead h2{font-size:28px;font-weight:600;letter-spacing:-.015em}
+.lead{font-size:18px;max-width:64ch}
+.prose{display:grid;gap:12px;max-width:68ch}
+.specs{display:flex;flex-wrap:wrap;gap:8px}
+.specs span{font-family:var(--mono);font-size:12px;padding:4px 10px;border:1px solid var(--line);border-radius:4px;color:var(--muted)}
+.specs b{color:var(--ink);font-weight:500}
+h3{font-size:18px;font-weight:600;margin-top:8px}
+h4{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500;margin:6px 0 0}
+ul.plain,ol.plain{margin:0;padding-left:20px;display:grid;gap:6px;max-width:70ch}
+ul.plain li::marker{color:var(--muted)}
+
+/* copy rows */
+.copy{margin:0;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.copy > div{display:grid;grid-template-columns:170px minmax(0,1fr);border-bottom:1px solid var(--line)}
+.copy > div:last-child{border-bottom:0}
+.copy dt{padding:12px 16px;background:var(--panel);font-family:var(--mono);font-size:12px;letter-spacing:.04em;color:var(--muted);border-right:1px solid var(--line)}
+.copy dd{margin:0;padding:12px 16px;display:grid;gap:6px;min-width:0}
+.copy dd .say{font-size:16px}
+.copy dd .say.big{font-size:20px;font-weight:600;letter-spacing:-.01em;line-height:1.3}
+.copy dd .note{font-size:14px;color:var(--muted)}
+@media (max-width:600px){.copy > div{grid-template-columns:minmax(0,1fr)}.copy dt{border-right:0;border-bottom:1px solid var(--line);padding-block:8px}}
+
+/* tables */
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:6px}
+table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:560px}
+th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--panel);font-family:var(--mono);font-size:11.5px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+tr:last-child td{border-bottom:0}
+td.num,th.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+td strong{font-weight:600}
+.tbl.compare td:first-child{font-weight:500;background:var(--panel);white-space:nowrap}
+.dash{color:var(--muted)}
+
+/* tab cards */
+.tabs{display:grid;gap:12px}
+.tabcard{border:1px solid var(--line);border-radius:6px;padding:18px 20px;display:grid;gap:10px}
+.tabcard header{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:baseline}
+.tabcard header .k{font-family:var(--mono);font-size:12px;color:var(--accent)}
+.tabcard header h3{margin:0;font-size:18px}
+.tabcard .hl{font-size:18px;font-weight:600;letter-spacing:-.01em}
+.tabcard p{max-width:70ch}
+.tabcard .gfx{font-size:14px;color:var(--muted);border-left:2px solid var(--line);padding-left:12px}
+details{border-top:1px dashed var(--line);padding-top:10px}
+summary{cursor:pointer;font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+details ul{margin:10px 0 0;padding-left:20px;columns:2 280px;column-gap:28px;font-size:14.5px}
+details li{break-inside:avoid;margin-bottom:4px}
+
+/* callouts & checklist */
+.callout{background:var(--accent-soft);border-radius:6px;padding:16px 20px;max-width:72ch}
+.callout b{font-weight:600}
+.check{list-style:none;margin:0;padding:0;display:grid;gap:0;border:1px solid var(--line);border-radius:6px}
+.check li{display:grid;grid-template-columns:22px 1fr;gap:12px;padding:12px 16px;border-bottom:1px solid var(--line)}
+.check li:last-child{border-bottom:0}
+.check li::before{content:"";width:16px;height:16px;border:1.5px solid var(--muted);border-radius:3px;margin-top:4px}
+
+.flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:14px}
+.flow span{padding:4px 10px;border:1px solid var(--line);border-radius:4px;background:var(--paper)}
+.flow span.pivot{border-color:var(--accent);color:var(--accent);font-weight:600}
+.flow i{font-style:normal;color:var(--muted)}
+
+.foot{margin-top:72px;padding-top:20px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+</style>
+
+<div class="wrap">
+
+<header class="dochead">
+  <div class="brand"><span class="chipmark" aria-hidden="true"></span><b>Nova Semiconductor</b> · Landing page brief</div>
+  <h1>Nova Semiconductor landing page brief</h1>
+  <p class="lede">One landing page replaces the current eight-page website. It explains Nova's DAA battery-management ICs in under a minute and turns engineers and OEMs into workshop registrations and sample requests.</p>
+  <dl class="meta">
+    <div><dt>Client</dt><dd>Nova Semiconductor Inc.</dd></div>
+    <div><dt>Deliverable</dt><dd>One-page website</dd></div>
+    <div><dt>Language</dt><dd>English</dd></div>
+    <div><dt>Revision</dt><dd>1.0 · 12 Oct 2026</dd></div>
+  </dl>
+  <div class="legend">
+    <strong style="color:var(--ink);font-weight:500">Copy labels</strong>
+    <span><span class="tag o">original</span> taken from the current site, typos fixed</span>
+    <span><span class="tag e">edited</span> original text shortened or merged</span>
+    <span><span class="tag n">new</span> written for this page</span>
+  </div>
+</header>
+
+<div class="body">
+<nav class="toc" aria-label="Contents">
+  <p>Contents</p>
+  <ol>
+    <li><a href="#overview"><span>01</span>Project overview</a></li>
+    <li><a href="#audience"><span>02</span>Audience &amp; messages</a></li>
+    <li><a href="#structure"><span>03</span>Page structure</a></li>
+    <li><a href="#header"><span>04</span>Header</a></li>
+    <li><a href="#hero"><span>05</span>Hero</a></li>
+    <li><a href="#technology"><span>06</span>Technology</a></li>
+    <li><a href="#products"><span>07</span>Products</a></li>
+    <li><a href="#suite"><span>08</span>Nova BMS Suite</a></li>
+    <li><a href="#why-nova"><span>09</span>Why Nova</a></li>
+    <li><a href="#contact"><span>10</span>Workshop &amp; Contact</a></li>
+    <li><a href="#footer"><span>11</span>Footer</a></li>
+    <li><a href="#build"><span>12</span>Functionality &amp; visuals</a></li>
+    <li><a href="#appendix"><span>13</span>Changes &amp; open questions</a></li>
+  </ol>
+</nav>
+
+<main>
+
+<!-- 01 -->
+<section id="overview">
+  <div class="sechead"><span class="secno">Section 01</span><h2>Project overview</h2></div>
+  <p class="lead">The new page must turn visits from engineers and OEMs into workshop registrations and sample requests.</p>
+  <div class="prose">
+    <p><strong>Company.</strong> Nova Semiconductor Inc. is a fabless semiconductor company headquartered in San Jose, California, operating since 2019. It develops Battery Management ICs for Li-Ion packs, built on its patented Digitally Assisted Analog (DAA) technology.</p>
+  </div>
+  <div class="specs" aria-label="Names in use">
+    <span><b>DAA</b> technology</span><span><b>NovaEIS™</b></span><span><b>PureCoulomb™</b></span><span><b>Nova BMS Suite</b></span><span><b>NB1600</b></span><span><b>NB1610</b></span><span><b>NB1400</b></span><span><b>NB1360</b></span>
+  </div>
+  <h4>Goals of the page</h4>
+  <ol class="plain">
+    <li>Explain in under a minute what Nova does and why its BMS is more accurate.</li>
+    <li>Let an engineer compare the four ICs and pick one.</li>
+    <li>Build trust: the Microchip collaboration, press coverage, top-10 power semiconductor startups.</li>
+    <li>Capture qualified leads through one form.</li>
+  </ol>
+  <h4>Conversions</h4>
+  <div class="tbl"><table>
+    <thead><tr><th>Conversion</th><th>Triggered from</th><th>Form request type</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Workshop pre-registration</strong> · primary</td><td>Hero, Nova BMS Suite, Workshop block</td><td>Workshop</td></tr>
+      <tr><td><strong>Sample request</strong> · primary</td><td>Header, Hero, Products</td><td>Samples</td></tr>
+      <tr><td>Datasheet request</td><td>Products</td><td>Datasheet</td></tr>
+      <tr><td>General inquiry</td><td>Contact block</td><td>General</td></tr>
+      <tr><td>White paper download · secondary</td><td>Why Nova</td><td>No form (see open questions)</td></tr>
+    </tbody>
+  </table></div>
+  <p class="note" style="color:var(--muted);font-size:14px">Source material: all 8 pages of the current site — Home, Battery Intelligence, Battery Mgmt. System, News, White Paper, Contact Nova, Career, Workshop Pre-Registration.</p>
+</section>
+
+<!-- 02 -->
+<section id="audience">
+  <div class="sechead"><span class="secno">Section 02</span><h2>Audience, tone and key messages</h2></div>
+  <p class="lead">The reader is an engineer choosing a BMS IC, so the page leads with numbers and gets to products and the form fast.</p>
+  <dl class="copy">
+    <div><dt>Primary</dt><dd><span class="say">BMS and hardware design engineers at OEMs and battery pack makers, from high-end equipment to cost-sensitive designs.</span></dd></div>
+    <div><dt>Secondary</dt><dd><span class="say">Engineering managers, product managers and procurement evaluating a BMS supplier; distributors; press; job candidates.</span></dd></div>
+    <div><dt>Tone</dt><dd><span class="say">Confident, precise, technical. Numbers instead of adjectives. Short sentences. No hype words the data does not back up.</span></dd></div>
+  </dl>
+  <h4>Key messages, in priority order</h4>
+  <ol class="plain">
+    <li><strong>Accuracy.</strong> 1 mV per cell with no calibration, 0.02% coulomb-counting repeatability, 100 µΩ impedance resolution.</li>
+    <li><strong>Battery health in one click.</strong> NovaEIS™ measures impedance in-circuit, with no external excitation and no lab equipment.</li>
+    <li><strong>Simplicity.</strong> A complete BMS on one IC plus the Nova BMS Suite turns months of work into hours.</li>
+    <li><strong>Sustainability.</strong> Better balancing and health data keep batteries in service longer and reduce waste.</li>
+  </ol>
+  <h4>Slogans and where each one lives</h4>
+  <div class="tbl"><table>
+    <thead><tr><th>Slogan</th><th>Status</th><th>Placement</th></tr></thead>
+    <tbody>
+      <tr><td>Engineered for Accuracy. Designed for Simplicity.</td><td><span class="tag o">original</span></td><td>Hero headline</td></tr>
+      <tr><td>People learn to live with limitations… until they don't have to.</td><td><span class="tag o">original</span></td><td>Technology intro</td></tr>
+      <tr><td>Turn months of work into hours of productivity.</td><td><span class="tag o">original</span></td><td>Nova BMS Suite</td></tr>
+      <tr><td>Battery health. One click away.</td><td><span class="tag o">original</span></td><td>Nova BMS Suite comparison</td></tr>
+      <tr><td>Bring Us Your BMS Requirements. Give Us Two Hours.</td><td><span class="tag o">original</span></td><td>Workshop</td></tr>
+      <tr><td>Saving our planet, one battery pack at a time!</td><td><span class="tag o">original</span></td><td>Why Nova + Footer</td></tr>
+      <tr><td>Shine through innovation…</td><td><span class="tag o">original</span></td><td>Logo only</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- 03 -->
+<section id="structure">
+  <div class="sechead"><span class="secno">Section 03</span><h2>Page structure</h2></div>
+  <p class="lead">Eight blocks: a header, six content sections and a footer. Tabs, accordions and a lightbox keep almost all of the old site's content without making the page long.</p>
+  <div class="tbl"><table>
+    <thead><tr><th class="num">#</th><th>Block</th><th>Job on the page</th><th>Design construction</th><th>Anchor</th></tr></thead>
+    <tbody>
+      <tr><td class="num">1</td><td><strong>Header</strong></td><td>Navigation, sample request</td><td>Sticky bar, anchor menu, CTA button</td><td>—</td></tr>
+      <tr><td class="num">2</td><td><strong>Hero</strong></td><td>Offer, proof numbers, main CTAs</td><td>Full-width hero, animated number counters</td><td>#top</td></tr>
+      <tr><td class="num">3</td><td><strong>Technology</strong></td><td>Explain DAA and what it enables</td><td>Intro line + 6 vertical tabs (accordion on mobile)</td><td>#technology</td></tr>
+      <tr><td class="num">4</td><td><strong>Products</strong></td><td>Compare and choose an IC</td><td>Comparison table + tabs per IC + “All features” accordion + schematic lightbox</td><td>#products</td></tr>
+      <tr><td class="num">5</td><td><strong>Nova BMS Suite</strong></td><td>Show the software and one-click NovaEIS™</td><td>Screenshot + 3 step cards</td><td>#suite</td></tr>
+      <tr><td class="num">6</td><td><strong>Why Nova</strong></td><td>Trust and company story</td><td>Press logo strip + 3 highlight cards + tabs (About / In the News / White Papers)</td><td>#why-nova</td></tr>
+      <tr><td class="num">7</td><td><strong>Workshop &amp; Contact</strong></td><td>Convert</td><td>Two columns (offer + one form) + region tabs for offices</td><td>#contact</td></tr>
+      <tr><td class="num">8</td><td><strong>Footer</strong></td><td>Close, legal, careers</td><td>Multi-column footer</td><td>—</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- 04 -->
+<section id="header">
+  <div class="sechead"><span class="secno">Section 04 · Block 1</span><h2>Header</h2></div>
+  <p class="lead">A slim sticky bar that keeps the sample request one click away on every screen.</p>
+  <dl class="copy">
+    <div><dt>Logo</dt><dd><span class="say">Current NOVA Semiconductor logo with “Shine through innovation…”. Click scrolls to top.</span><span class="note">Vector SVG needed from the client.</span></dd></div>
+    <div><dt>Anchor menu</dt><dd><span class="say">Technology · Products · BMS Suite · Why Nova · Workshop · Contact <span class="tag n">new</span></span><span class="note">The active item highlights on scroll.</span></dd></div>
+    <div><dt>Button</dt><dd><span class="say">Request Samples <span class="tag n">new</span></span><span class="note">Scrolls to the form with request type “Samples” preselected.</span></dd></div>
+    <div><dt>Behaviour</dt><dd><span class="say">Transparent over the hero; after scroll it gets a solid background with a thin shadow and shrinks slightly.</span></dd></div>
+    <div><dt>Mobile</dt><dd><span class="say">Logo + button + burger; the burger opens a full-screen menu with the same anchors.</span></dd></div>
+    <div><dt>Removed</dt><dd><span class="say">The user/account icon from the old site (no customer area exists; to confirm).</span></dd></div>
+  </dl>
+</section>
+
+<!-- 05 -->
+<section id="hero">
+  <div class="sechead"><span class="secno">Section 05 · Block 2</span><h2>Hero</h2></div>
+  <p class="lead">The first screen states the offer, proves it with numbers and offers the two main actions.</p>
+  <dl class="copy">
+    <div><dt>Eyebrow</dt><dd><span class="say">Battery Management ICs · Patented DAA Technology <span class="tag n">new</span></span></dd></div>
+    <div><dt>H1</dt><dd><span class="say big">Engineered for Accuracy. Designed for Simplicity.</span><span><span class="tag o">original</span></span></dd></div>
+    <div><dt>Subheadline</dt><dd><span class="say">Nova's patented digitally assisted analog (DAA) technology brings Li-Ion protection, balancing, fuel gauging and state-of-health determination into a single IC — with unmatched accuracy at an affordable cost. <span class="tag e">edited</span></span></dd></div>
+    <div><dt>Primary button</dt><dd><span class="say">Book a 2-Hour Workshop <span class="tag n">new</span></span><span class="note">Opens the form, type “Workshop”.</span></dd></div>
+    <div><dt>Secondary button</dt><dd><span class="say">Request Samples <span class="tag n">new</span></span><span class="note">Opens the form, type “Samples”.</span></dd></div>
+    <div><dt>Trust line</dt><dd><span class="say">In collaboration with Microchip on a validated battery management reference platform. <span class="tag e">edited</span></span><span class="note">From News. With the Microchip logo if the client has permission.</span></dd></div>
+  </dl>
+  <h4>Proof numbers · animated counters</h4>
+  <div class="tbl"><table>
+    <thead><tr><th class="num">Number</th><th>Label</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td class="num"><strong>1 mV</strong></td><td>Cell voltage accuracy, no calibration required</td><td><span class="tag o">original</span></td></tr>
+      <tr><td class="num"><strong>0.02%</strong></td><td>Coulomb-counting repeatability (PureCoulomb™)</td><td><span class="tag o">original</span></td></tr>
+      <tr><td class="num"><strong>100 µΩ</strong></td><td>Repeatable in-circuit impedance resolution (NovaEIS™)</td><td><span class="tag o">original</span></td></tr>
+      <tr><td class="num"><strong>3–16</strong></td><td>Cells per IC, stackable for larger packs</td><td><span class="tag e">edited</span></td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout"><b>Visual.</b> Replaces the dark blurred background with the duplicate logo. A clean 3D view of the NB1600 package that opens into its layers (leadframe, DAA die, NovaEIS impedance, cell readout) and closes again. No text inside images.</div>
+</section>
+
+<!-- 06 -->
+<section id="technology">
+  <div class="sechead"><span class="secno">Section 06 · Block 3</span><h2>Technology</h2></div>
+  <p class="lead">The whole Battery Intelligence page fits into six vertical tabs: labels on the left, the selected tab's text and graphic on the right. On mobile the tabs become an accordion.</p>
+  <dl class="copy">
+    <div><dt>H2</dt><dd><span class="say big">People learn to live with limitations… until they don't have to.</span><span><span class="tag o">original</span></span></dd></div>
+    <div><dt>Lead</dt><dd><span class="say">DAA-powered BMS changed the trajectory. Traditional battery management systems focus on measuring and protecting batteries. Modern battery systems require more — and Nova's architecture combines it all in a single streamlined platform. <span class="tag e">edited</span></span></dd></div>
+    <div><dt>Mini timeline</dt><dd>
+      <div class="flow" aria-label="Timeline of BMS evolution">
+        <span>Discrete Protection</span><i>→</i><span>Integrated Protection</span><i>→</i><span>Muxed ADC</span><i>→</i><span>Cell Balancing</span><i>→</i><span class="pivot">Trajectory shift: DAA</span><i>→</i><span>1 mV ADC + Reference / Cell</span><i>→</i><span>0.02% SOC Repeatability</span><i>→</i><span>NovaEIS™</span><i>→</i><span>Firmware + GUI + Ecosystem</span>
+      </div>
+      <span class="note"><span class="tag o">original</span> Rebuilt as a coded, animated graphic: the line runs flat to DAA, then turns upward in brand blue.</span>
+    </dd></div>
+  </dl>
+  <div class="tabs">
+    <article class="tabcard"><header><span class="k">Tab 1</span><h3>DAA Technology</h3></header>
+      <p class="hl">The architecture behind the accuracy. <span class="tag n">new</span></p>
+      <p>Digitally Assisted Analog is Nova's patented architecture. Every cell gets its own dedicated ADC and reference, and all cells and current are sampled at the same moment. That precision is what makes protection, balancing, fuel gauging and NovaEIS™ possible on one IC — without the complexity and cost traditionally attached to this level of performance. <span class="tag e">edited</span></p>
+      <p class="gfx">Graphic: cells → dedicated ADC + reference per cell → DAA core → Protection · Balancing · Fuel Gauging · NovaEIS™.</p>
+    </article>
+    <article class="tabcard"><header><span class="k">Tab 2</span><h3>NovaEIS™</h3></header>
+      <p class="hl">Understanding batteries, not just monitoring them. <span class="tag o">original</span></p>
+      <p>Voltage, current, and temperature reveal how a battery is operating. Impedance reveals how healthy it is. NovaEIS™ provides real-time insight into battery condition, degradation, and State of Health through direct per-cell impedance measurement with repeatable 100 µΩ resolution, bringing practical battery intelligence directly into real-world battery systems. <span class="tag o">original</span></p>
+      <p class="gfx">Graphic: healthy vs unhealthy cell — same voltage · same temperature · same current. Caption: “Battery Intelligence reveals the difference. NovaEIS™ delivers the insight you can't see.”</p>
+    </article>
+    <article class="tabcard"><header><span class="k">Tab 3</span><h3>Precision Measurement</h3></header>
+      <p class="hl">1 mV was just the beginning. <span class="tag o">original</span></p>
+      <p>DAA-powered precision measurement delivers 1 mV accuracy, 0.02% coulomb-counting repeatability, simultaneous measurement, and dedicated ADC and reference resources for every cell. This architecture provides the consistency and precision required for advanced battery management functions. <span class="tag o">original</span></p>
+      <p class="gfx">Graphic: iceberg — “1 mV accuracy” above water; NovaEIS™, Fuel Gauging, Diagnostics, Complete BMS, Simultaneous Measurement, Dedicated ADC &amp; Ref. per Cell below. Caption: “Precision measurement enabled by DAA powers everything that follows.”</p>
+    </article>
+    <article class="tabcard"><header><span class="k">Tab 4</span><h3>Fuel Gauging</h3></header>
+      <p class="hl">Know exactly how much energy remains. <span class="tag o">original</span></p>
+      <p>Accurate fuel gauging should not be about guessing. It should be about precise measurement. Accurate State-of-Charge (SOC) estimation starts with precise measurement of the charge flowing into and out of the battery. Nova's PureCoulomb™ fuel gauging delivers industry-leading 0.02% coulomb-counting repeatability, enabling highly accurate fuel gauging and reliable runtime prediction throughout the life of the battery. <span class="tag e">edited</span></p>
+      <p class="gfx">Graphic: clean SOC gauge with state of charge in % and remaining runtime. Replaces the cartoon water tank.</p>
+    </article>
+    <article class="tabcard"><header><span class="k">Tab 5</span><h3>Protection &amp; Balancing</h3></header>
+      <p class="hl">A healthy battery is a protected and balanced battery. <span class="tag o">original</span></p>
+      <p>Lithium-ion batteries are highly sensitive to overvoltage, undervoltage, overcurrent, and temperature extremes. At the same time, manufacturing tolerances, aging, and operating conditions cause cells to drift apart over time. Nova's simultaneous cell measurement and 1 mV accuracy enable precise protection thresholds and effective balancing decisions, helping maximize safety, capacity, and battery life throughout the life of the pack. <span class="tag e">edited</span></p>
+      <p class="gfx">Graphic: a chain of cells with one weak link highlighted. Caption: “A battery pack is only as strong as its weakest link.”</p>
+    </article>
+    <article class="tabcard"><header><span class="k">Tab 6</span><h3>Complete BMS</h3></header>
+      <p class="hl">More than monitoring. Complete battery management. <span class="tag o">original</span></p>
+      <p>Traditional battery management systems often require developers to assemble multiple functions from separate hardware, firmware, and software components. This increases complexity, extends development time, and introduces additional points of failure. Nova integrates precision measurement, protection, balancing, diagnostics, and NovaEIS™ battery intelligence into one streamlined platform — reducing development effort while improving performance, reliability, and scalability. <span class="tag e">edited</span></p>
+      <p class="gfx">Graphic: six puzzle pieces (NovaEIS™, Precision Measurement, Fuel Gauging, Protection, Balancing, Diagnostics &amp; Communications) forming one base: Complete BMS — NB1600. Link: “Compare the ICs” → Products.</p>
+    </article>
+  </div>
+</section>
+
+<!-- 07 -->
+<section id="products">
+  <div class="sechead"><span class="secno">Section 07 · Block 4</span><h2>Products</h2></div>
+  <p class="lead">Four ICs, compared in one table, then explored one at a time in tabs. Every tab ends with sample and datasheet buttons.</p>
+  <dl class="copy">
+    <div><dt>H2</dt><dd><span class="say big">Battery Management System ICs</span><span><span class="tag e">edited</span></span></dd></div>
+    <div><dt>Lead</dt><dd><span class="say">From 3-cell packs to 16-cell stacks — protection, balancing and fuel gauging on a single IC, with 1 mV accuracy and no calibration required. <span class="tag n">new</span></span></dd></div>
+  </dl>
+  <h4>Comparison table · “—” = not listed on the current site, to confirm</h4>
+  <div class="tbl compare"><table>
+    <thead><tr><th></th><th>NB1600</th><th>NB1610</th><th>NB1400</th><th>NB1360</th></tr></thead>
+    <tbody>
+      <tr><td>Cells</td><td class="num">7–16</td><td class="num">7–16</td><td class="num">7–14</td><td class="num">3–6</td></tr>
+      <tr><td>Functions</td><td>Fuel gauge, protection &amp; balancing</td><td>Fuel gauge, protection &amp; balancing</td><td>Fuel gauge, protection &amp; balancing</td><td>Protection &amp; balancing</td></tr>
+      <tr><td>In-circuit NovaEIS™</td><td>Yes</td><td>Yes</td><td class="dash">—</td><td class="dash">—</td></tr>
+      <tr><td>High-current discharge via external transistors</td><td class="dash">—</td><td>Yes</td><td class="dash">—</td><td class="dash">—</td></tr>
+      <tr><td>Temperature monitoring</td><td>6 zones + on-chip</td><td>6 zones + on-chip</td><td>4 zones + on-chip</td><td>3 zones + on-chip</td></tr>
+      <tr><td>Pre-charge output</td><td>Yes</td><td>Yes</td><td class="dash">—</td><td class="dash">—</td></tr>
+      <tr><td>Stackable, fully synchronized</td><td>Yes</td><td>Yes</td><td class="dash">—</td><td class="dash">—</td></tr>
+      <tr><td>LED state-of-charge indicator</td><td class="dash">—</td><td class="dash">—</td><td>Yes</td><td>Yes, 5 LEDs</td></tr>
+      <tr><td>Package</td><td>48-pin TQFP</td><td>64-pin TQFP</td><td>48-pin TQFP</td><td>32-pin TQFN</td></tr>
+      <tr><td>Status</td><td><strong>Sampling now</strong></td><td class="dash">to confirm</td><td><strong>Sampling now</strong></td><td class="dash">to confirm</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout"><b>Common to all four</b> <span class="tag o">original, merged</span><br>1 mV accuracy for battery voltage, protection &amp; balancing over the operating range, no calibration required · PureCoulomb™ fuel gauging with 0.02% repeatability · no RC filtering needed for each cell · simultaneous sampling of all cells · programmable battery impedance mismatch compensation · programmable autonomous operation · 400 kHz I2C bus · drives large MOSFETs for high-current applications · µA standby current.</div>
+  <h4>Tab layout, the same for each IC</h4>
+  <ol class="plain">
+    <li>Name + status badge (“Sampling now”).</li>
+    <li>Subtitle <span class="tag o">original</span> and a 1–2 sentence description <span class="tag n">new</span>.</li>
+    <li>4–5 key highlights with icons.</li>
+    <li>Accordion “All features” with the full original list.</li>
+    <li>Schematic thumbnail that opens in a lightbox with zoom. NB1400 also shows the evaluation board photo.</li>
+    <li>Buttons: Request Samples · Request Datasheet <span class="tag n">new</span> — open the form with type and product preselected.</li>
+  </ol>
+  <div class="tabs">
+    <article class="tabcard"><header><span class="k">48-pin TQFP · Sampling now</span><h3>NB1600</h3></header>
+      <p class="hl">7–16 Cell Fuel Gauge, Protection &amp; Balancing IC — Great for LFP and Other Packs <span class="tag o">original</span></p>
+      <p>Nova's flagship: a complete 16-cell battery management system on one chip, with in-circuit NovaEIS™ battery intelligence and built-in production hooks. <span class="tag n">new</span></p>
+      <details><summary>All features · original</summary><ul>
+        <li>Use it as Analog-Front-End, Full Function BMS or a Hybrid Approach</li>
+        <li>Fully Integrated Protection + Balancing + Fuel Gauging, Minimum External Parts</li>
+        <li>Programmable Autonomous Operation</li>
+        <li>Accurate cell impedance measurement &amp; In-Circuit NovaEIS™</li>
+        <li>Unmatched 1 mV Accuracy for Battery Voltage, Protection &amp; Balancing Over the Operating Range, No Calibration Required</li>
+        <li>PureCoulomb™, Best in Class Fuel Gauging with Repeatability of 0.02%</li>
+        <li>No Need for RC Filtering for Each Cell</li>
+        <li>Simultaneous Sampling of All Cells and Current, Eliminates Load Current Noise</li>
+        <li>Programmable Battery Impedance Mismatch Compensation</li>
+        <li>6 Zone + On-Chip Accurate Temperature Monitoring</li>
+        <li>Programmable Pre-Charge Output</li>
+        <li>WDT, CRC and Many More Self-Checks</li>
+        <li>WDT and CRC for Communication</li>
+        <li>400 kHz I2C Bus</li>
+        <li>Able to Safely Drive Large MOSFETs for High-Current Applications, Including Many Parallel MOSFETs</li>
+        <li>µA Standby Current</li>
+        <li>Stackable with Full Synchronization</li>
+        <li>48-pin TQFP</li>
+      </ul></details>
+    </article>
+    <article class="tabcard"><header><span class="k">64-pin TQFP · status to confirm</span><h3>NB1610</h3></header>
+      <p class="hl">7–16 Cell Fuel Gauge, Protection &amp; Balancing IC — Great for LFP and Other Packs <span class="tag o">original</span></p>
+      <p>The NB1600 architecture for high-current designs: drives external transistors for high-current discharge. <span class="tag n">new</span></p>
+      <p class="gfx">All features: the NB1600 list, plus “Drive external transistors for high-current discharge”; package 64-pin TQFP instead of 48-pin.</p>
+    </article>
+    <article class="tabcard"><header><span class="k">48-pin TQFP · Sampling now</span><h3>NB1400</h3></header>
+      <p class="hl">7–14 Cell Fuel Gauge, Protection &amp; Balancing IC — Great for LFP and Other Packs <span class="tag o">original</span></p>
+      <p>A 14-cell fuel gauge, protection and balancing IC with a built-in LED state-of-charge indicator. Evaluation board available. <span class="tag n">new</span></p>
+      <p class="gfx">All features: the NB1600 list without in-circuit NovaEIS™, pre-charge output, WDT/CRC self-checks and stacking; 4 Zone + On-Chip Temperature Monitoring; plus “LED State of Charge Indicator”; 48-pin TQFP.</p>
+    </article>
+    <article class="tabcard"><header><span class="k">32-pin TQFN · status to confirm</span><h3>NB1360</h3></header>
+      <p class="hl">3–6 Cell Protection &amp; Balancing IC <span class="tag o">original</span></p>
+      <p>Nova's accuracy for small packs: protection and balancing for 3 to 6 cells, with a 5-LED state-of-charge indicator. <span class="tag n">new</span></p>
+      <details><summary>All features · original</summary><ul>
+        <li>Fully Integrated Protection + Balancing + Fuel Gauging, Minimum External Parts</li>
+        <li>Programmable Autonomous Operation</li>
+        <li>Unmatched 1 mV Accuracy, No Calibration Required</li>
+        <li>PureCoulomb™, Fuel Gauging with Repeatability of 0.02%</li>
+        <li>No Need for RC Filtering for Each Cell</li>
+        <li>Simultaneous Sampling of All Cells, Eliminates Load Noise</li>
+        <li>Programmable Battery Impedance Mismatch Compensation</li>
+        <li>3 Zone + On-Chip Accurate Temperature Monitoring</li>
+        <li>400 kHz I2C Bus</li>
+        <li>Able to Drive Large MOSFETs for High-Current Applications</li>
+        <li>5 LED State of Charge Indicator</li>
+        <li>µA Standby Current</li>
+        <li>32-pin TQFN</li>
+      </ul></details>
+      <p class="gfx">Note: the title says protection &amp; balancing; the features list also includes fuel gauging. To confirm.</p>
+    </article>
+  </div>
+</section>
+
+<!-- 08 -->
+<section id="suite">
+  <div class="sechead"><span class="secno">Section 08 · Block 5</span><h2>Nova BMS Suite</h2></div>
+  <p class="lead">This block shows that the ICs come with working software, and that a battery health check takes one click instead of a lab.</p>
+  <dl class="copy">
+    <div><dt>Eyebrow</dt><dd><span class="say">Introducing <span class="tag o">original</span></span></dd></div>
+    <div><dt>H2</dt><dd><span class="say big">Nova BMS Suite</span><span><span class="tag o">original</span></span></dd></div>
+    <div><dt>Subheadline</dt><dd><span class="say">Turn months of work into hours of productivity. <span class="tag o">original</span></span></dd></div>
+    <div><dt>Text</dt><dd><span class="say">One desktop application to configure, monitor and evaluate Nova BMS ICs over I2C. Read and write RAM and NVM parameters, send commands, monitor every cell, log results — and run NovaEIS™ with a single click. <span class="tag n">new</span></span><span class="note">Based on the software screenshot.</span></dd></div>
+    <div><dt>Feature row</dt><dd><span class="say">Command Console · RAM &amp; NVM Parameters · Live Monitoring · NovaEIS™ Test &amp; Results · Logs &amp; Export <span class="tag n">new</span></span></dd></div>
+    <div><dt>Screenshot</dt><dd><span class="say">A clean, high-resolution screenshot of the real Nova BMS Suite window. The infographic currently pasted inside the screenshot is rebuilt as the cards below.</span></dd></div>
+  </dl>
+  <h4>Three step cards · heading “Battery health. One click away.” <span class="tag o">original</span></h4>
+  <div class="tbl"><table>
+    <thead><tr><th class="num">Card</th><th>Title</th><th>Text</th><th>Tags</th></tr></thead>
+    <tbody>
+      <tr><td class="num">1</td><td><strong>Lab Equipment</strong></td><td>Excitation + major overhead</td><td>Specialized setup · Offline · Engineering time</td></tr>
+      <tr><td class="num">2</td><td><strong>System Integration</strong></td><td>Excitation + major overhead</td><td>Complex integration · More parts · More cost</td></tr>
+      <tr><td class="num">3</td><td><strong>NovaEIS™</strong> · highlighted</td><td>A click. No overhead.</td><td>Built into the IC and the Suite <span class="tag n">new</span></td></tr>
+    </tbody>
+  </table></div>
+  <dl class="copy">
+    <div><dt>Caption</dt><dd><span class="say">NovaEIS™ is now automated in the latest Nova BMS Suite. Battery health, literally a click away. <span class="tag o">original</span></span></dd></div>
+    <div><dt>Button</dt><dd><span class="say">See it live in a 2-hour workshop <span class="tag n">new</span></span><span class="note">Opens the form, type “Workshop”.</span></dd></div>
+  </dl>
+</section>
+
+<!-- 09 -->
+<section id="why-nova">
+  <div class="sechead"><span class="secno">Section 09 · Block 6</span><h2>Why Nova</h2></div>
+  <p class="lead">The trust block: press logos and three highlights at a glance, then the company story, news and white papers in three tabs.</p>
+  <dl class="copy">
+    <div><dt>H2</dt><dd><span class="say big">Powering the Future of Battery Management</span><span><span class="tag o">original</span></span></dd></div>
+    <div><dt>Featured in</dt><dd><span class="say">Electronic Design · TechInsights · Electronics For Engineers · Electronics World · Bodo's Power Systems · Power Electronics News <span class="tag e">edited</span></span><span class="note">Logo strip, from the News page.</span></dd></div>
+  </dl>
+  <h4>Three highlight cards <span class="tag e">edited</span></h4>
+  <div class="tbl"><table>
+    <thead><tr><th class="num">Card</th><th>Title</th><th>Text</th></tr></thead>
+    <tbody>
+      <tr><td class="num">1</td><td><strong>Microchip collaboration</strong></td><td>Nova and Microchip offer a complete, validated battery management reference platform (2026).</td></tr>
+      <tr><td class="num">2</td><td><strong>Top 10 power semiconductor startups</strong></td><td>Nova was named among the top 10 power semiconductor startups.</td></tr>
+      <tr><td class="num">3</td><td><strong>Patented DAA technology</strong></td><td>Digitally assisted analog: the foundation of every Nova IC.</td></tr>
+    </tbody>
+  </table></div>
+  <h3>Tab “About”</h3>
+  <dl class="copy">
+    <div><dt>Our mission</dt><dd><span class="say">To deliver the most precise and effective Battery Management ICs, bringing advanced performance, reliability, and seamless integration to systems across the spectrum — from high-end equipment to cost-sensitive designs. <span class="tag o">original</span></span></dd></div>
+    <div><dt>Who we are</dt><dd><span class="say">Nova Semiconductor Inc. is a fabless semiconductor company revolutionizing battery management through its patented, digitally assisted analog (DAA) technology. Specializing in Li-Ion protection, balancing, fuel gauging, and state-of-health determination, Nova delivers unmatched accuracy at an affordable cost. <span class="tag o">original</span></span></dd></div>
+    <div><dt>Why it matters</dt><dd><span class="say">Each year, countless Li-Ion batteries are discarded prematurely due to poor balancing and ineffective BMS solutions. Nova's breakthrough technology maximizes battery capacity, extends lifespan, and reduces waste, ensuring longer-lasting, safer, and more sustainable energy storage. By empowering OEMs and end users with next-generation BMS solutions, Nova is reshaping the industry — delivering better performance, a superior user experience, and a positive environmental impact. <span class="tag o">original</span></span></dd></div>
+    <div><dt>Closing line</dt><dd><span class="say">Saving our planet, one battery pack at a time! <span class="tag o">original</span></span></dd></div>
+    <div><dt>Fact row</dt><dd><span class="say">Founded 2019 · Headquarters: San Jose, California · Sales partners in Taiwan, Europe and India <span class="tag n">new</span></span></dd></div>
+  </dl>
+  <h3>Tab “In the News”</h3>
+  <p class="prose" style="color:var(--muted);font-size:15px">Cards with date, headline and source; the six newest show, “Show all” expands the rest. Each card links to the article (links from the current News page, tracking parameters removed). Headlines <span class="tag e">edited</span> for clarity.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Date</th><th>Headline</th><th>Source</th></tr></thead>
+    <tbody>
+      <tr><td class="num">Aug 7, 2026</td><td>Nova and Microchip team up on a complete, validated battery management reference platform</td><td>Electronic Design</td></tr>
+      <tr><td class="num">Jun 23, 2026</td><td>Nova &amp; Microchip collaboration</td><td>TechInsights</td></tr>
+      <tr><td class="num">Jun 18, 2026</td><td>Nova Semiconductor and Microchip on battery management</td><td>Electronics For Engineers</td></tr>
+      <tr><td class="num">Jun 18, 2026</td><td>Nova and Microchip jointly prepare a validated battery management reference platform</td><td>Electronics World</td></tr>
+      <tr><td class="num">May 6, 2026</td><td>Nova introduces Nova BMS Suite: turn months of work into hours</td><td>LinkedIn</td></tr>
+      <tr><td class="num">Apr 16, 2026</td><td>Private sessions in Munich, Germany, showcasing P-EIS</td><td>LinkedIn</td></tr>
+      <tr><td class="num">Mar 24, 2026</td><td>Private sessions at APEC, San Antonio, showcasing P-EIS</td><td>LinkedIn</td></tr>
+      <tr><td class="num">Feb 2026</td><td>Featured article: On-Chip Redundancy and the Myth of Independence</td><td>Bodo's Power Systems</td></tr>
+      <tr><td class="num">Mar 20 · year to confirm</td><td>A New Age in Battery Management</td><td>Bodo's Power Systems</td></tr>
+      <tr><td class="num dash">Undated</td><td>Unlocking AI-Driven Battery Performance Through Accuracy</td><td>Power Electronics News</td></tr>
+      <tr><td class="num dash">Undated</td><td>Breaking Through the Limits: Why True Per-Cell ADC Matters</td><td>LinkedIn</td></tr>
+      <tr><td class="num dash">Undated</td><td>Nova Semiconductor exhibits at Electronica India</td><td>LinkedIn</td></tr>
+      <tr><td class="num dash">Undated</td><td>Safety and Reliability in Battery Management</td><td>Bodo's Power Systems</td></tr>
+      <tr><td class="num dash">Undated</td><td>Nova's Advanced BMS: Transforming the Future of EV Battery Performance</td><td>LinkedIn</td></tr>
+      <tr><td class="num dash">Undated</td><td>Nova Semiconductor makes the top 10 power semiconductor startups</td><td>LinkedIn</td></tr>
+      <tr><td class="num dash">Undated</td><td>Assessing battery runtime with accurate SOC measurement</td><td>Power Electronics News</td></tr>
+      <tr><td class="num dash">Undated</td><td>Breakthrough in State of Charge (SOC) Estimation</td><td>LinkedIn</td></tr>
+      <tr><td class="num dash">Undated</td><td>Wine Down Friday with Nova Semi's CEO Ahmad Ashrafzadeh</td><td>Power Electronics News</td></tr>
+      <tr><td class="num dash">Undated</td><td>Nova Semiconductor: A Paradigm Shift in Battery Management Systems</td><td>Power Electronics News</td></tr>
+    </tbody>
+  </table></div>
+  <ul class="plain">
+    <li>Button “Press Releases” <span class="tag o">original</span> links to the client's press release page (URL to confirm).</li>
+    <li>Two near-duplicate items about the top-10 list on the old page are merged into one.</li>
+  </ul>
+  <h3>Tab “White Papers”</h3>
+  <p class="prose" style="color:var(--muted);font-size:15px">Rows with title, date, a one-line description and a Download button. Descriptions are <span class="tag n">new</span>, written from the titles; please confirm them.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Title <span class="tag o">original</span></th><th>Date</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td>Reinventing State of Charge, Average Usage, and Remaining Time Estimations</td><td class="num">May 2024</td><td>A new approach to estimating SOC, average usage and remaining run time.</td></tr>
+      <tr><td>Li-Ion Battery Safety and Early Fault Detection</td><td class="num">Feb 2024</td><td>How precise measurement catches cell faults before they become hazards.</td></tr>
+      <tr><td>Battery State of Charge and Remaining Usage Time Estimation</td><td class="num">Dec 2023</td><td>Methods for accurate SOC and remaining-time prediction.</td></tr>
+      <tr><td>Simultaneous Measurement Effect on Accuracy</td><td class="num">Jun 2023</td><td>Why sampling all cells and current at the same moment removes load-noise error.</td></tr>
+      <tr><td>Li-Ion Cell Balancing: Active vs Passive</td><td class="num">Jul 2021</td><td>A comparison of the two balancing approaches and their trade-offs.</td></tr>
+      <tr><td>Li-Ion Battery Packs Diminish Without BMS</td><td class="num">Apr 2021</td><td>What happens to pack capacity and life without proper battery management.</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- 10 -->
+<section id="contact">
+  <div class="sechead"><span class="secno">Section 10 · Block 7</span><h2>Workshop &amp; Contact</h2></div>
+  <p class="lead">The conversion block: the workshop offer on the left, one shared form on the right, offices and sales partners below in region tabs.</p>
+  <h3>Left column — Workshop</h3>
+  <dl class="copy">
+    <div><dt>Eyebrow</dt><dd><span class="say">Private Event · By Invitation <span class="tag o">original</span></span></dd></div>
+    <div><dt>H2</dt><dd><span class="say big">Bring Us Your BMS Requirements. Give Us Two Hours.</span><span><span class="tag o">original</span></span></dd></div>
+    <div><dt>Text</dt><dd><span class="say">Bring your BMS requirements. We'll configure the BMS, demonstrate it operating, run in-circuit NovaEIS™ with no external excitation and no overhead, and discuss the built-in NB1600 production hooks — all in less than two hours. <span class="tag o">original</span></span></dd></div>
+    <div><dt>What you get</dt><dd>
+      <ul class="plain">
+        <li>Your BMS configured to your pack requirements</li>
+        <li>A live demonstration of the NB1600 in operation</li>
+        <li>In-circuit NovaEIS™ run on the spot, with no external excitation</li>
+        <li>A walkthrough of NB1600 production hooks — we also help ensure production readiness</li>
+      </ul>
+      <span class="note"><span class="tag n">new</span> built from the original text.</span></dd></div>
+    <div><dt>Who it's for</dt><dd><span class="say">BMS and hardware engineers, engineering leads and product teams evaluating a battery management IC. <span class="tag n">new</span></span></dd></div>
+    <div><dt>Note</dt><dd><span class="say">Venue and dates will be selected based on pre-registration interest. <span class="tag o">original</span></span></dd></div>
+    <div><dt>Past sessions</dt><dd><span class="say">APEC, San Antonio (March 2026) · Munich, Germany (April 2026) <span class="tag e">edited</span></span></dd></div>
+  </dl>
+  <h3>Right column — One form</h3>
+  <dl class="copy">
+    <div><dt>Heading</dt><dd><span class="say">Pre-register or send us a request <span class="tag n">new</span></span></dd></div>
+  </dl>
+  <div class="tbl"><table>
+    <thead><tr><th>Field</th><th>Type</th><th>Required</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Request type</strong></td><td>Segmented control: Workshop · Samples · Datasheet · General inquiry</td><td>Yes</td><td><span class="tag n">new</span></td></tr>
+      <tr><td><strong>Name</strong></td><td>Text</td><td>Yes</td><td><span class="tag o">original</span></td></tr>
+      <tr><td><strong>Company email</strong></td><td>Email, company domains only</td><td>Yes</td><td><span class="tag o">original</span></td></tr>
+      <tr><td><strong>Company</strong></td><td>Text</td><td>Yes</td><td><span class="tag n">new</span></td></tr>
+      <tr><td><strong>Job function</strong></td><td>Dropdown: Hardware / BMS Engineer · Engineering Manager · Product Manager · Procurement · Executive · Other</td><td>Yes</td><td><span class="tag o">original</span> field, new options</td></tr>
+      <tr><td><strong>Product of interest</strong></td><td>Dropdown: NB1600 · NB1610 · NB1400 · NB1360 (shows for Samples and Datasheet)</td><td>For Samples, Datasheet</td><td><span class="tag n">new</span></td></tr>
+      <tr><td><strong>City / Country</strong></td><td>Text</td><td>Yes</td><td><span class="tag o">original</span></td></tr>
+      <tr><td><strong>Your BMS requirements</strong></td><td>Textarea; placeholder: number of cells, chemistry, application, current</td><td>No</td><td><span class="tag o">original</span> field, new placeholder</td></tr>
+      <tr><td><strong>Consent</strong></td><td>Checkbox: I agree to the Privacy Policy</td><td>Yes</td><td><span class="tag n">new</span></td></tr>
+    </tbody>
+  </table></div>
+  <dl class="copy">
+    <div><dt>Button label</dt><dd><span class="say">Changes with request type: Pre-Register <span class="tag o">original</span> · Request Samples <span class="tag n">new</span> · Request Datasheet <span class="tag n">new</span> · Drop us a line! <span class="tag o">original</span></span></dd></div>
+    <div><dt>Under the button</dt><dd><span class="say">This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply. <span class="tag o">original</span></span></dd></div>
+    <div><dt>Success message</dt><dd><span class="say">Thank you — your request is in. Our team will get back to you within [X] business days. <span class="tag n">new</span></span></dd></div>
+  </dl>
+  <h3>Offices and sales partners · region tabs</h3>
+  <p class="prose" style="color:var(--muted);font-size:15px">Tabs: USA (HQ) · Taiwan · Europe · India, each with a stylized map highlighting the region. The heading “Partners” <span class="tag o">original</span> becomes “Sales partners” <span class="tag e">edited</span>.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Region</th><th>Company</th><th>Address</th><th>Contacts</th></tr></thead>
+    <tbody>
+      <tr><td><strong>USA (HQ)</strong></td><td>Nova Semiconductor Inc.</td><td>22 Great Oaks Boulevard, Suite 235, San Jose, California 95119, USA</td><td>info@novasemi.com · Get directions · LinkedIn</td></tr>
+      <tr><td><strong>Taiwan</strong></td><td>Prohubs International Corp.</td><td>9F, No. 77, Sec. 1, Xintai 5th Rd., Xizhi Dist., New Taipei City 221, Taiwan</td><td>info@prohubs.com.tw · Tel +886-2-26988800 · Fax +886-2-26988801</td></tr>
+      <tr><td><strong>Europe</strong></td><td>Finepower GmbH</td><td>Carl-Zeiss-Ring 21, 85737 Ismaning, Germany</td><td>info@finepower.com · Phone +49 89 3090 758 0 · Fax +49 89 3090 758 22</td></tr>
+      <tr><td><strong>India</strong></td><td>Swingtel Communications Pvt Ltd</td><td>Marathon Futurex, A-2910-11-12, 29th Floor, Lower Parel, Mumbai 400 013, Maharashtra, India</td><td>venkat@swingtel.com · Phone +91-96866 79493</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- 11 -->
+<section id="footer">
+  <div class="sechead"><span class="secno">Section 11 · Block 8</span><h2>Footer</h2></div>
+  <p class="lead">The footer closes the page with the brand line, careers and legal links.</p>
+  <dl class="copy">
+    <div><dt>Column 1</dt><dd><span class="say">Logo + closing line: Saving our planet, one battery pack at a time! <span class="tag o">original</span></span></dd></div>
+    <div><dt>Column 2</dt><dd><span class="say">Navigation: the same anchors as the header.</span></dd></div>
+    <div><dt>Column 3</dt><dd><span class="say">Contact: info@novasemi.com · LinkedIn icon · 22 Great Oaks Boulevard, Suite 235, San Jose, CA 95119, USA.</span></dd></div>
+    <div><dt>Column 4 · Careers</dt><dd><span class="say">Don't accept the status quo? Join us to change the battery management landscape. Send your resume to jobs@novasemi.com. Nova Semiconductor Inc. is an equal opportunity employer. <span class="tag e">edited</span></span><span class="note">Optional “Read more” opens a modal with the full original career text.</span></dd></div>
+    <div><dt>Bottom line</dt><dd><span class="say">Copyright © 2019–2026 Nova Semiconductor Inc. All Rights Reserved. · Privacy Policy · Cookie Policy <span class="tag o">original</span></span></dd></div>
+    <div><dt>Cookie banner</dt><dd><span class="say">We use cookies to improve your experience. You can accept or decline non-essential cookies. <span class="tag e">edited</span></span><span class="note">Compact bottom bar with Decline · Accept. Decline must actually disable non-essential cookies (the page serves EU visitors).</span></dd></div>
+  </dl>
+</section>
+
+<!-- 12 -->
+<section id="build">
+  <div class="sechead"><span class="secno">Section 12</span><h2>Functionality and visual direction</h2></div>
+  <p class="lead">All text is live HTML, every call to action leads to the same form, and the look moves from a site-builder template to a clean engineering brand.</p>
+  <h4>Functionality</h4>
+  <ul class="plain">
+    <li>One page with anchor navigation, smooth scroll and an active menu state.</li>
+    <li>Every CTA opens the single form with request type (and product, where relevant) preselected.</li>
+    <li>Form submissions go to info@novasemi.com; workshop requests are tagged separately. CRM integration if the client has one.</li>
+    <li>Tabs switch without page reload; vertical tabs and product tabs become accordions under 768 px.</li>
+    <li>Schematics open in a lightbox with zoom.</li>
+    <li>White papers download as PDF (direct or behind the form — to confirm).</li>
+    <li>No text baked into images: timeline, iceberg, cell comparison, chain, puzzle and EIS comparison are rebuilt as HTML or SVG, readable on mobile and indexable.</li>
+    <li>SEO: page title, meta description, Open Graph image, schema.org Organization and Product markup for the four ICs.</li>
+    <li>Analytics events: CTA clicks, form submits by request type, PDF downloads, tab opens in Products.</li>
+    <li>Performance: WebP images and SVG graphics, Largest Contentful Paint under 2.5 s on mobile.</li>
+  </ul>
+  <h4>Visual direction</h4>
+  <dl class="copy">
+    <div><dt>Colors</dt><dd><span class="say">The logo blue as the main brand color, deep neutral backgrounds, a cool white for text. A second accent used only in gradients and the neon timeline.</span></dd></div>
+    <div><dt>Typography</dt><dd><span class="say">One sans-serif family for all text, with a light weight and a gradient for accent words in headlines and tabular figures for numbers.</span></dd></div>
+    <div><dt>Text layout</dt><dd><span class="say">Left-aligned body text, 60–75 characters per line. No centered paragraphs with scattered bold words.</span></dd></div>
+    <div><dt>Graphics</dt><dd><span class="say">All infographics redrawn as clean vector illustrations in brand colors, one consistent line and icon style.</span></dd></div>
+    <div><dt>Imagery</dt><dd><span class="say">Product renders, the NB1400 evaluation board photo and Nova BMS Suite screenshots. No generic stock photos.</span></dd></div>
+    <div><dt>Overall feel</dt><dd><span class="say">Precise, light, technical — closer to a modern chip company than to a template site.</span></dd></div>
+  </dl>
+</section>
+
+<!-- 13 -->
+<section id="appendix">
+  <div class="sechead"><span class="secno">Section 13 · Appendix</span><h2>What changed and what to confirm</h2></div>
+  <p class="lead">Nothing of substance from the old site is lost: content was kept, folded into tabs, or replaced for the reason listed below.</p>
+  <h4>Content removed or replaced</h4>
+  <div class="tbl"><table>
+    <thead><tr><th>Old content</th><th>Old page</th><th>Decision</th></tr></thead>
+    <tbody>
+      <tr><td>Dark blurred hero with a second logo</td><td>Home</td><td>Replaced with offer, numbers and CTAs</td></tr>
+      <tr><td>Text baked into images (timeline, EIS comparison, iceberg, puzzle)</td><td>Home, Battery Intelligence</td><td>Rebuilt as live HTML / SVG graphics</td></tr>
+      <tr><td>Cartoon water tank</td><td>Battery Intelligence</td><td>Replaced with a clean SOC gauge graphic</td></tr>
+      <tr><td>Large schematics as the main product visual</td><td>Battery Mgmt. System</td><td>Moved into a lightbox inside each product tab</td></tr>
+      <tr><td>News as a list of raw URLs</td><td>News</td><td>Rebuilt as cards with clean links</td></tr>
+      <tr><td>Mission and About texts saying the same thing</td><td>Home</td><td>Merged in the About tab</td></tr>
+      <tr><td>Stock photos for Taiwan, Europe, India</td><td>Contact</td><td>Replaced with region tabs and a stylized map</td></tr>
+      <tr><td>Large LinkedIn logo, Google Map</td><td>Contact</td><td>Replaced with a LinkedIn icon and a “Get directions” link</td></tr>
+      <tr><td>Separate Career page with “please check back later”</td><td>Career</td><td>Short careers text in the footer</td></tr>
+      <tr><td>Large floating cookie box</td><td>All pages</td><td>Compact cookie bar</td></tr>
+      <tr><td>User/account icon in the header</td><td>All pages</td><td>Removed (to confirm)</td></tr>
+    </tbody>
+  </table></div>
+  <h4>Errors fixed in the copy</h4>
+  <ul class="plain">
+    <li>“career Opportunities” → “Career Opportunities”.</li>
+    <li>“(pdf) (pdf)” duplicated in a white paper title.</li>
+    <li>“Myth of Independenc” → “Myth of Independence”.</li>
+    <li>The caption “A battery pack is only as strong as its weakest link” was repeated under the puzzle graphic; it now stays only with Protection &amp; Balancing.</li>
+    <li>“MOSFETs LED” run together in the NB1400 features, split into two items.</li>
+    <li>Workshop heading “We also help ensure production readiness” had no text under it; folded into the “What you get” list.</li>
+  </ul>
+  <h4>Open questions for Nova</h4>
+  <ul class="check">
+    <li>NB1610 and NB1360: sampling now, in development, or in production?</li>
+    <li>NB1360: does it include fuel gauging (features list) or only protection &amp; balancing (title)?</li>
+    <li>NB1400: does it support NovaEIS™, pre-charge output and stacking? The current page does not list them.</li>
+    <li>May we use Microchip's name and logo in the hero?</li>
+    <li>White papers: free download, or download after filling in the form?</li>
+    <li>Datasheets: public PDFs, or sent on request only?</li>
+    <li>Nova BMS Suite: downloadable, or supplied with samples and evaluation kits?</li>
+    <li>Press Releases button: where should it link?</li>
+    <li>Response time to promise after a form submission.</li>
+    <li>Vector logo (SVG) and exact brand colors.</li>
+    <li>Customer logos or testimonials we are allowed to show.</li>
+    <li>Target industries to name (for example EV, energy storage, e-mobility, power tools, industrial).</li>
+    <li>Does the account icon in the old header serve any purpose?</li>
+  </ul>
+</section>
+
+</main>
+</div>
+
+<footer class="foot">
+  <span>Nova Semiconductor landing page brief · Revision 1.0 · 12 Oct 2026</span>
+  <span>Prepared for Nova Semiconductor Inc.</span>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  var links = Array.prototype.slice.call(document.querySelectorAll('.toc a'));
+  var map = {};
+  links.forEach(function(a){ map[a.getAttribute('href').slice(1)] = a; });
+  if (!('IntersectionObserver' in window)) return;
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting) {
+        links.forEach(function(a){ a.classList.remove('on'); });
+        var a = map[e.target.id]; if (a) a.classList.add('on');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  document.querySelectorAll('main section').forEach(function(s){ io.observe(s); });
+})();
+</script>
+
+</body></html>
